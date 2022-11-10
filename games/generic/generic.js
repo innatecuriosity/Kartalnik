@@ -20,11 +20,23 @@ function addPlayer() {
         newcommer.setAttribute("id", playerName);
         newcommer.classList="button player";
         newcommer.textContent=playerName;
+        newcommer.addEventListener("dblclick", editPlayer);
 
         players[playerName].head = newcommer;
         tableHead.insertBefore(newcommer, newPlayer);
     }
     return;
+}
+
+function editPlayer() {
+    let player = event.target;
+    
+    let editField = document.createElement("div")
+    editField.classList = "card edit-player";
+    editField.textContent= "EDIT PLAYER: " + player;
+
+    settings.appendChild(editField);
+
 }
 
 const tableHead = document.querySelector(".table-head");
@@ -34,6 +46,8 @@ newPlayer.textContent="Add...";
 newPlayer.addEventListener("click", addPlayer);
 
 tableHead.appendChild(newPlayer);
+
+const settings = document.querySelector(".settings");
 
 //generate table
 
