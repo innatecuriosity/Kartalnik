@@ -2,25 +2,28 @@
 let players = {};
 
 function addPlayer() {
-    playerName ="";
+    let input ="";
 
-    while (playerName=="") {
-        playerName=prompt("New player's name:");
-        if (Object.keys(players).includes(playerName)) alert("A player with this name already exists, be unique.")
+    while (input=="") {
+        input=prompt("Players's names (separate by a comma):");
     }
+
+    let playerList = input.split(",");
+    //if (Object.keys(players).includes(playerList)) alert("A player with this name already exists, be unique.")
+    console.log(playerList);
     //maybe change id to nubers later
-    players[playerName] = ({"id":playerName});
-    
-    const newcommer = document.createElement("div");
-    newcommer.setAttribute("id", playerName);
-    newcommer.classList="button player";
-    newcommer.textContent=playerName;
+    for (playerName of playerList) {
+        playerName = playerName.trim();
+        players[playerName] = ({"id":playerName});
+        
+        const newcommer = document.createElement("div");
+        newcommer.setAttribute("id", playerName);
+        newcommer.classList="button player";
+        newcommer.textContent=playerName;
 
-    players[playerName].head = newcommer;
-    tableHead.insertBefore(newcommer, newPlayer);
-
-    console.log(players);
-
+        players[playerName].head = newcommer;
+        tableHead.insertBefore(newcommer, newPlayer);
+    }
     return;
 }
 
