@@ -2,20 +2,17 @@
 let players = {};
 
 // gets player list, by asking for it through the browser
-function getPlayers_input(){
+function getPlayers_input() {
     let input ="";
     while (input=="") {
         input=prompt("Players's names (separate by a comma):");
     }
-    return playerList = input.split(",");
+    return input.split(",");
 }
-function addPlayer() {
-    //get player names by input (by asking)
-    let playerList = getPlayers_input();
+function addPlayer(playerList) {
 
-    //if (Object.keys(players).includes(playerList)) alert("A player with this name already exists, be unique.")
-    console.log(playerList);
-    //TODO maybe change id to nubers later
+    if (playerList == undefined) playerList = getPlayers_input();
+     //TODO maybe change id to numbers later
     for (playerName of playerList) {
         playerName = playerName.trim();
         players[playerName] = ({"id":playerName});
@@ -29,7 +26,7 @@ function addPlayer() {
         newcommer.addEventListener("dblclick", () =>{players[event.target.id].editcard.classList.toggle("hidden")});
 
         players[playerName].head = newcommer;
-        tableHead.insertBefore(newcommer, newPlayer);
+        tableHead.appendChild(newcommer);
 
         // creates edit element but keeps it hidden
         let editField = document.createElement("div")
@@ -45,15 +42,19 @@ function addPlayer() {
 }
 
 const tableHead = document.querySelector(".table-head");
-const newPlayer= document.createElement("div");
-newPlayer.classList="button new-player";
-newPlayer.textContent="Add...";
-newPlayer.addEventListener("click", addPlayer);
-
-tableHead.appendChild(newPlayer);
-
 const settings = document.querySelector(".settings");
+
+//create Add... button for adding new players
+const addNewPlayer= document.createElement("div");
+addNewPlayer.classList="button new-player";
+addNewPlayer.textContent="Add players";
+addNewPlayer.addEventListener("click", () => {addPlayer(getPlayers_input())});
+
+settings.appendChild(addNewPlayer);
 
 //generate table
 
 //keep scores
+
+//for testing
+addPlayer(["Nate", "Kat"]);

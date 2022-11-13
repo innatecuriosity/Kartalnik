@@ -83,15 +83,19 @@
 .settings {
     border: 1px solid white;
     padding: 20px;
+    width: 30%;
 }
 .table-head {
     display: flex;
-    justify-content: left;
+    justify-content: space-around;
+    width: max-content;
+    border-bottom: 1px solid white;
 }
 
-.table-head .button {
+.button {
     background-color: rgb(40, 40, 60);
     flex: 0 0 auto;
+    margin-right: 20px;
     margin-left: 20px;
     padding: 4px; 
     width: fit-content;
@@ -104,7 +108,7 @@
 
 .card {
     display:block;
-    width: 200px;
+    width:auto;
     flex: 0 1 auto;
     border: 1px solid white;
 }
