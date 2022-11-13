@@ -1,42 +1,47 @@
 //add players
 let players = {};
 
-function addPlayer() {
+// gets player list, by asking for it through the browser
+function getPlayers_input(){
     let input ="";
-
     while (input=="") {
         input=prompt("Players's names (separate by a comma):");
     }
+    return playerList = input.split(",");
+}
+function addPlayer() {
+    //get player names by input (by asking)
+    let playerList = getPlayers_input();
 
-    let playerList = input.split(",");
     //if (Object.keys(players).includes(playerList)) alert("A player with this name already exists, be unique.")
     console.log(playerList);
-    //maybe change id to nubers later
+    //TODO maybe change id to nubers later
     for (playerName of playerList) {
         playerName = playerName.trim();
         players[playerName] = ({"id":playerName});
+        player = players[playerName];
         
+        //creates a name tag for the top of the scoreboard and adds it to player attributes
         const newcommer = document.createElement("div");
         newcommer.setAttribute("id", playerName);
         newcommer.classList="button player";
         newcommer.textContent=playerName;
-        newcommer.addEventListener("dblclick", editPlayer);
+        newcommer.addEventListener("dblclick", () =>{players[event.target.id].editcard.classList.toggle("hidden")});
 
         players[playerName].head = newcommer;
         tableHead.insertBefore(newcommer, newPlayer);
+
+        // creates edit element but keeps it hidden
+        let editField = document.createElement("div")
+        player["editcard"] = editField
+
+        editField.classList = "card edit-player hidden " + playerName ;
+        editField.textContent= "EDIT PLAYER: " + playerName;
+
+        settings.appendChild(editField);
+
     }
     return;
-}
-
-function editPlayer() {
-    let player = event.target;
-    
-    let editField = document.createElement("div")
-    editField.classList = "card edit-player";
-    editField.textContent= "EDIT PLAYER: " + player;
-
-    settings.appendChild(editField);
-
 }
 
 const tableHead = document.querySelector(".table-head");

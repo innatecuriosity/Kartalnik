@@ -61,6 +61,53 @@
 
 /*CONTENT*/
 .content {
-    align: center;
+    text-align: center;
 }
 
+/*SCORE TABLES*/
+.table-container {
+    display: flex;
+    flex: 1 1 auto;
+}
+
+.table {
+    display: grid;
+    flex: 1 1 0;
+    padding: 20px;
+    border: 1px solid white;
+
+    column-gap: 1px;
+    column-width: 60px;
+}
+
+.settings {
+    border: 1px solid white;
+    padding: 20px;
+}
+.table-head {
+    display: flex;
+    justify-content: left;
+}
+
+.table-head .button {
+    background-color: rgb(40, 40, 60);
+    flex: 0 0 auto;
+    margin-left: 20px;
+    padding: 4px; 
+    width: fit-content;
+    min-width: 60px; 
+    border-radius: 4px;
+    text-align:center;
+}
+
+/*SETTINGS*/
+
+.card {
+    display:block;
+    width: 200px;
+    flex: 0 1 auto;
+    border: 1px solid white;
+}
+.card.hidden {
+    display: none;
+}
